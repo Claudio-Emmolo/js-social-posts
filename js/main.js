@@ -56,54 +56,17 @@ const posts = [
     }
 ];
 
-/* <div class="post">
-    <div class="post__header">
-        <div class="post-meta">                    
-            <div class="post-meta__icon">
-                <img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione">                    
-            </div>
-            <div class="post-meta__data">
-                <div class="post-meta__author">Phil Mangione</div>
-                <div class="post-meta__time">4 mesi fa</div>
-            </div>                    
-        </div>
-    </div>
-    
-    <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
-    
-    <div class="post__image">
-        <img src="https://unsplash.it/600/300?image=171" alt="">
-    </div>
-    
-    <div class="post__footer">
-        <div class="likes js-likes">
-            <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
-                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                    <span class="like-button__label">Mi Piace</span>
-                </a>
-            </div>
-    
-            <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
-            </div>
-        </div>
-        
-    </div>            
-</div> */
 
 const postWrapper = document.querySelector("div.posts-list");
 
-const likedPostID = [];
-
 posts.forEach((post, index)=>{
     //Create div containers
-    const divPrincipalElement = document.createElement("div");
-    divPrincipalElement.classList.add("post");
+    const divPrincipalElement = addDiv();
+    addClass(divPrincipalElement, "post")
 
     //Create Post Header
-    const divHeaderElement = document.createElement("div");
-    divHeaderElement.classList.add("post__header");
+    const divHeaderElement = addDiv();
+    addClass(divHeaderElement, "post__header")
     divHeaderElement.innerHTML = 
     `
     <div class="post-meta">                    
@@ -125,21 +88,21 @@ posts.forEach((post, index)=>{
     divPrincipalElement.append(divHeaderElement);
 
     //Create Post Footer
-    const divFooterElement = document.createElement("div");
-    divFooterElement.classList.add("post__footer");
+    const divFooterElement = addDiv();
+    addClass(divFooterElement, "post__footer")
 
-    const likesJs = document.createElement("div");
-    likesJs.classList.add("likes", "js-likes")
+    const likesJs = addDiv()
+    addClass(likesJs, "likes", "js-likes")
 
     divFooterElement.append(likesJs);
 
 
-    const likesCtas = document.createElement("div");
-    likesCtas.classList.add("likes__cta")
+    const likesCtas = addDiv();
+    addClass(likesCtas, "likes__cta");
     likesJs.append(likesCtas);
 
-    const aButton = document.createElement("div");
-    aButton.classList.add("like-button", "js-like-button");
+    const aButton = addDiv();
+    addClass(aButton, "like-button", "js-like-button")
     aButton.innerHTML = 
     `
     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
@@ -148,8 +111,8 @@ posts.forEach((post, index)=>{
     likesCtas.append(aButton);
 
 
-    const divLikeCounter = document.createElement("div");
-    divLikeCounter.classList.add("likes__counter");
+    const divLikeCounter = addDiv();
+    addClass(divLikeCounter, "likes__counter")
     divLikeCounter.innerHTML = 
     `
     Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
@@ -180,4 +143,13 @@ posts.forEach((post, index)=>{
     postWrapper.append(divPrincipalElement);
 });
 
-console.log (likedPostID)
+
+// -------- FUNCTIONS --------
+
+function addDiv(){
+    return document.createElement("div");
+}
+
+function addClass(divAddClass, ClassName, OtherClass){
+    divAddClass.classList.add(ClassName, OtherClass);
+}
