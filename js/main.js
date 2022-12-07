@@ -94,6 +94,10 @@ const posts = [
 
 const postWrapper = document.querySelector("div.posts-list");
 
+const likedPostID = [];
+
+let ceckLike = false;
+
 posts.forEach((post)=>{
     //Create div containers
     const divPrincipalElement = document.createElement("div");
@@ -156,6 +160,20 @@ posts.forEach((post)=>{
     likesJs.append(divLikeCounter)
 
 
+    //LIKE CLICK
+    aButton.addEventListener ('click', function(){
+        if (!ceckLike){
+            ceckLike = true
+            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes + 1}</b> persone`;
+            aButton.classList.add("like-button--liked");
+            likedPostID.push(post.id);
+        } else {
+            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone`;
+            ceckLike = false
+            aButton.classList.remove("like-button--liked");
+        }
+    });
+
     //Appendo tutto il mio footer ad Div Principale
     divPrincipalElement.append(divFooterElement);
 
@@ -163,3 +181,5 @@ posts.forEach((post)=>{
     //Final Append // Appendo il mio post sull'HTML
     postWrapper.append(divPrincipalElement);
 });
+
+console.log (likedPostID)
