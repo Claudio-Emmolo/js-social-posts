@@ -113,6 +113,11 @@ posts.forEach((post)=>{
                 <div class="post-meta__time">${post.created}</div>
             </div>                    
         </div>
+    
+    <div class="post__text">${post.content}</div>
+    <div class="post__image">
+        <img src="${post.media}" alt="">
+    </div>
     `
     //Inserisco il div Header post nell'Elemento principale
     divPrincipalElement.append(divHeaderElement);
