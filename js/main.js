@@ -113,11 +113,8 @@ posts.forEach((post, index)=>{
 
     const divLikeCounter = addDiv();
     addClass(divLikeCounter, "likes__counter")
-    divLikeCounter.innerHTML = 
-    `
-    Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
+    CounterPrint(divLikeCounter, post.likes)
 
-    ` 
     likesJs.append(divLikeCounter)
 
 
@@ -125,12 +122,12 @@ posts.forEach((post, index)=>{
     aButton.addEventListener ('click', function(){
         if (!aButton.classList.contains("like-button--liked")){
             post.likes++;
-            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone`;
+            CounterPrint(divLikeCounter, post.likes)
             aButton.classList.add("like-button--liked");
         } else {
             // ceckLike = false
             post.likes--;
-            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone`;
+            CounterPrint(divLikeCounter, post.likes)
             aButton.classList.remove("like-button--liked");
         }
     });
@@ -144,7 +141,7 @@ posts.forEach((post, index)=>{
 });
 
 
-// -------- FUNCTIONS --------
+// -------- FUNCTIONS -------- //
 
 function addDiv(){
     return document.createElement("div");
@@ -152,4 +149,8 @@ function addDiv(){
 
 function addClass(divAddClass, ClassName, OtherClass){
     divAddClass.classList.add(ClassName, OtherClass);
+}
+
+function CounterPrint(divHtml, arrayObj){
+    divHtml.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${arrayObj}</b> persone`;
 }
