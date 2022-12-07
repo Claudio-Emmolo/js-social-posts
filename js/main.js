@@ -122,6 +122,28 @@ posts.forEach((post)=>{
     //Inserisco il div Header post nell'Elemento principale
     divPrincipalElement.append(divHeaderElement);
 
+    //Create Post Footer
+    const divFooterElement = document.createElement("div");
+    divFooterElement.classList.add("post__footer");
+    divFooterElement.innerHTML = 
+    `
+    <div class="likes js-likes">
+        <div class="likes__cta">
+            <a class="like-button  js-like-button" href="#" data-postid="1">
+                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                <span class="like-button__label">Mi Piace</span>
+            </a>
+        </div>
+    
+        <div class="likes__counter">
+            Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
+        </div>
+    </div>
+    `
+    //Inserisco il div Footer post nell'Elemento principale
+    divPrincipalElement.append(divFooterElement);
+
+    
     //Final Append //
     postWrapper.append(divPrincipalElement);
 });
