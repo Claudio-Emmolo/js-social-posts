@@ -125,25 +125,41 @@ posts.forEach((post)=>{
     //Create Post Footer
     const divFooterElement = document.createElement("div");
     divFooterElement.classList.add("post__footer");
-    divFooterElement.innerHTML = 
+
+    const likesJs = document.createElement("div");
+    likesJs.classList.add("likes", "js-likes")
+
+    divFooterElement.append(likesJs);
+
+
+    const likesCtas = document.createElement("div");
+    likesCtas.classList.add("likes__cta")
+    likesJs.append(likesCtas);
+
+    const aButton = document.createElement("div");
+    aButton.classList.add("like-button", "js-like-button");
+    aButton.innerHTML = 
     `
-    <div class="likes js-likes">
-        <div class="likes__cta">
-            <a class="like-button  js-like-button" href="#" data-postid="1">
-                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                <span class="like-button__label">Mi Piace</span>
-            </a>
-        </div>
-    
-        <div class="likes__counter">
-            Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
-        </div>
-    </div>
+    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+        <span class="like-button__label">Mi Piace</span>
     `
-    //Inserisco il div Footer post nell'Elemento principale
+    likesCtas.append(aButton);
+
+
+    const divLikeCounter = document.createElement("div");
+    divLikeCounter.classList.add("likes__counter");
+    divLikeCounter.innerHTML = 
+    `
+    Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
+
+    ` 
+    likesJs.append(divLikeCounter)
+
+
+    //Appendo tutto il mio footer ad Div Principale
     divPrincipalElement.append(divFooterElement);
 
-    
-    //Final Append //
+
+    //Final Append // Appendo il mio post sull'HTML
     postWrapper.append(divPrincipalElement);
 });
