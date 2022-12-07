@@ -96,9 +96,7 @@ const postWrapper = document.querySelector("div.posts-list");
 
 const likedPostID = [];
 
-let ceckLike = false;
-
-posts.forEach((post)=>{
+posts.forEach((post, index)=>{
     //Create div containers
     const divPrincipalElement = document.createElement("div");
     divPrincipalElement.classList.add("post");
@@ -162,14 +160,14 @@ posts.forEach((post)=>{
 
     //LIKE CLICK
     aButton.addEventListener ('click', function(){
-        if (!ceckLike){
-            ceckLike = true
-            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes + 1}</b> persone`;
-            aButton.classList.add("like-button--liked");
-            likedPostID.push(post.id);
-        } else {
+        if (!aButton.classList.contains("like-button--liked")){
+            post.likes++;
             divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone`;
-            ceckLike = false
+            aButton.classList.add("like-button--liked");
+        } else {
+            // ceckLike = false
+            post.likes--;
+            divLikeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone`;
             aButton.classList.remove("like-button--liked");
         }
     });
