@@ -123,3 +123,14 @@ h1 {
     color: #0CD977;
     cursor: default;
 }
+
+.profile-pic-null{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0CD977;
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+}

@@ -84,6 +84,7 @@ posts.forEach((post, index)=>{
         <img src="${post.media}" alt="">
     </div>
     `
+
     //Inserisco il div Header post nell'Elemento principale
     divPrincipalElement.append(divHeaderElement);
 
@@ -140,6 +141,31 @@ posts.forEach((post, index)=>{
     postWrapper.append(divPrincipalElement);
 });
 
+posts.forEach((post, index) =>{
+    
+    
+    //IMG with initial name
+    if (post.author.image == null){
+        const fullName = post.author.name;
+    
+        const imgNull = document.querySelectorAll(".post-meta__icon");
+        const imgRemove = document.querySelectorAll("img.profile-pic");
+        imgRemove[index].remove()
+        const h1Element = document.createElement("h1");
+        h1Element.innerHTML = fullName.charAt(0);
+
+        imgNull[index].append(h1Element);
+
+        imgNull[index].classList.add("profile-pic-null");
+        imgNull[index].style.backgroundColor = 'rgb(' + randomColor() + ',' + randomColor() + ',' + randomColor() + ')';;
+
+    }
+    
+});
+
+
+
+
 
 // -------- FUNCTIONS -------- //
 
@@ -153,4 +179,9 @@ function addClass(divAddClass, ClassName, OtherClass){
 
 function CounterPrint(divHtml, arrayObj){
     divHtml.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${arrayObj}</b> persone`;
+}
+
+function randomColor(){
+    const color = Math.floor(Math.random() * 256);
+    return color
 }
