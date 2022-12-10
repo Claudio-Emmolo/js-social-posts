@@ -126,7 +126,6 @@ posts.forEach((post, index)=>{
             CounterPrint(divLikeCounter, post.likes)
             aButton.classList.add("like-button--liked");
         } else {
-            // ceckLike = false
             post.likes--;
             CounterPrint(divLikeCounter, post.likes)
             aButton.classList.remove("like-button--liked");
@@ -146,13 +145,15 @@ posts.forEach((post, index) =>{
     
     //IMG with initial name
     if (post.author.image == null){
-        const fullName = post.author.name;
+        const fullName = post.author.name.split(" ")[0].split("")[0] + post.author.name.split(" ")[1].split("")[0];
+        console.log(fullName)
     
         const imgNull = document.querySelectorAll(".post-meta__icon");
         const imgRemove = document.querySelectorAll("img.profile-pic");
         imgRemove[index].remove()
         const h1Element = document.createElement("h1");
-        h1Element.innerHTML = fullName.charAt(0);
+        h1Element.style.fontSize = "2rem";
+        h1Element.innerHTML = fullName;
 
         imgNull[index].append(h1Element);
 
